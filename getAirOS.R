@@ -7,7 +7,7 @@ library(DBI)
 # conn til db
 con=dbConnect(MariaDB(),
               user="root",
-              password="OttoRehagel123",
+              password=Sys.getenv("getairdb"),
               host="localhost",
               db="bbair")
 # fly over bornholm
@@ -17,8 +17,10 @@ con=dbConnect(MariaDB(),
 
 cn=c("icao24","callsign","origin_country","time_position","last_contact","longitude","latitude","baro_altitude","on_ground","velocity", "true_track","vertical_rate","sensors","geo_altitude","squawk", "spi", "category" )
 urlb='https://opensky-network.org/api/states/all?lamin=55.483425&lomin=12.327830&lamax=55.816619&lomax=12.824961'
-res=GET(url=urlb, authenticate(user = "thorwulf",password = "D5vdhvt!"))
+res=GET(url=urlb, authenticate(user = "thorwulf",password = Sys.getenv("getairos")))
 
+
+print(res$status_code)
 resraw=content(res,as="text")
 listres=fromJSON(resraw, flatten = T)
 dfres=as.data.frame(listres$states)
