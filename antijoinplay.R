@@ -2,13 +2,12 @@ library(DBI)
 library(stringr)
 library(RMariaDB)
 library(dplyr)
-Sys.getenv()
-#
+
 con <- dbConnect(MariaDB(),
                  db="play",
                  user="root",
                  host="localhost",
-                 password="OttoRehagel123"
+                 password=Sys.getenv("mypw")
                  )
 
 isdb=dbListTables(con)
