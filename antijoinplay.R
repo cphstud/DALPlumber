@@ -7,7 +7,7 @@ con <- dbConnect(MariaDB,
                  db="play",
                  user=root,
                  host="localhost",
-                 password="OttoRehagel123"
+                 password=sys.getenv("mypw")
                  )
 
 isdb=dbListTables(con)
