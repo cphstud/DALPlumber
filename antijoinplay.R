@@ -3,6 +3,8 @@ library(stringr)
 library(RMariaDB)
 library(dplyr)
 
+# connect to db
+
 con <- dbConnect(MariaDB(),
                  db="play",
                  user="root",
